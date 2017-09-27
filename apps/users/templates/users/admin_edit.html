@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Admin Edit Here!</h1>
+    <h3>User id: {{user.id}}</h3>
+    <h3>{{user.fname}} {{user.lname}}</h3>
+    <h3>Edit info</h3>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+        <form action="/users/editting/" method="post">
+        {% csrf_token %}
+        <label>Email: <input type="text" value ="{{user.email}}" name="email"></label>
+        <label>First Name: <input type="text" value ="{{user.fname}}" name="fname"></label>
+        <label>Last Name: <input type="text" value ="{{user.lname}}" name="lname"></label>
+        <label>Access Level: <select name="access">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        </select></label>
+        <input type="hidden" value='{{user.id}}' name ='idt'>
+        <input type="submit" value='Save Edits'>
+    </form>
+    <h3>Edit Password</h3>
+    <form action="/users/pwc/" method='post'>
+        {% csrf_token %}
+        {{pwform}}
+        <input type="hidden" value='{{user.id}}' name ='idt'>
+        <input type="submit" value="Change Password">
+    </form>
+
+</body>
+</html>

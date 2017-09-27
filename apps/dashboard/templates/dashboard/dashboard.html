@@ -1,0 +1,50 @@
+{% extends 'dashboard/header.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+    th, td{
+        border-right: black solid 2px;
+        text-align: center;
+    }
+    h1{
+        padding: 30px;
+    }
+    </style>
+</head>
+<body>
+    {% block mostheader %}
+    
+    <h1>MANAGE OR SHOW ALL USERS IN DASHBOARD</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>Created_at</th>
+            <th>User level</th>
+        </tr>
+        
+            {% if users %}
+                {% for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td><a href="/users/show/{{user.id}}">{{user.fname}} {{user.lname}}</a></td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.created_at}}</td>
+                        <td>{{user.access}}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            
+    {% endblock %}
+</table>
+</body>
+</html>

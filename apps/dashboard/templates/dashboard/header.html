@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+    {% load static %}
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+        th, td{
+            border-right: black solid 2px;
+            text-align: center;
+        }
+        h1{
+            padding: 30px;
+        }
+        .line{
+            width:314px;
+            border-bottom: 2px black solid;
+        }
+        .right{
+            text-align: right;
+        }
+        .wrapper{
+            width:320px;
+        }
+        </style>
+        
+</head>
+<body>
+    
+    <header>
+        <h2>Test App</h2>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/users/edit/">Profile</a>
+        <a href="/users/off/">Log off</a>
+    </header>
+    {% block mostheader %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'dashboard/header.html' %}
+{% load static %}
+<body>
+    {% block mostheader %}
+    <div class="wrapper">
+    <h1>{{user.fname}} {{user.lname}}</h1>
+    <h3>Registered at: {{user.created_at}}</h3>
+    <h3>User id: {{user.id}}</h3>
+    <h3>Email Address: {{user.email}}</h3>
+    <h3>Description: {{user.desc}}</h3>
+    <form action="/users/post/" method ='post'>
+        {% csrf_token %}
+        {{form1}}
+        <input type="hidden" name="return_id" value="{{user.id}}">
+        <input type="submit" value="Post">
+    </form>
+    {% if msgs %}
+        {% for msg in msgs %}
+            <p>{{msg.user_from.fname}} {{msg.user_from.lname}}</p>
+            <p>{{msg.msg}}</p>
+            {% if cmts %}
+                {% for cmt in cmts %}
+                    {% if cmt.on_msg == msg %}
+                        <p class="right">{{cmt.user_from.fname}}</p>
+                        <p class='right'>{{cmt.cmt}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            <form action="/users/comment/" method ='post' class='line'>
+                {% csrf_token %}
+                {{form2}}
+                <input type="hidden" name="return_id1" value="{{user.id}}">
+                <input type="hidden" name="message_on" value="{{msg.id}}">
+                <input type="submit" value="Comment">
+            </form>
+        {% endfor %}
+    {% endif %}
+        
+        </div>
+        {% endblock %}
+</body>
+</html>
